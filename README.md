@@ -1,8 +1,7 @@
-# pirate-ducky
 <h1 align="center">pirate-ducky</h1>
 
 <div align="center">
-  <strong>Create a cheap but powerful &amp; custom USB Rubber Ducky with a Raspberry Pi Pico/Pico W</strong>
+  <strong>Rubber Ducky Installation Simplified: Create a cheap but powerful &amp; custom USB Rubber Ducky with a Raspberry Pi Pico/Pico W</strong>
 </div>
 
 <br />
@@ -18,25 +17,14 @@
 <br />
 
 ## Table of contents
-- [pirate-ducky](#pirate-ducky)
-  - [Table of contents](#table-of-contents)
-  - [Requirements](#description)
-  - [Visuals](#visuals)
-    - [Demo GIFs](#demo-gifs)
-    - [Screenshots](#screenshots)
-  - [Requirements](#requirements)
-  - [Build](#build)
-  - [Install](#install)
-  - [Usage](#usage)
-    - [Running on terminal startup](#running-on-terminal-startup)
-      - [On Bash and ZSH](#on-bash-and-zsh)
-      - [On Fish](#on-fish)
-  - [Location of the files](#location-of-the-files)
-  - [How it works](#how-it-works)
-  - [Depedencies](#depedencies)
-  - [Author](#author)
-  - [License](#license)
-
+- [Requirements](#requirements)
+- [Installation](#installation-instructions)
+  - [Setup mode](#setup-mode)
+  - [USB mode enable/disable](#usb-mode-enable-disable)
+  - [Multiple payloads](#multiple-payloads)
+- [Changing Keyboard Layouts](#changing-keyboard-layouts)
+- [Pico Recovery](#how-to-recover-your-pico-if-it-becomes-corrupted-or-doesnt-boot)
+- [Links and Resources](#useful-links-and-resources)
 
 # Requirements
 
@@ -44,6 +32,7 @@
 
 2. Micro B to USB A male converter / Micro USB cable
 
+![Picow-png](images/picow.png)
 
 # Installation Instructions
 
@@ -51,26 +40,25 @@
 
 2. Plug the device using a converter/cable into a USB port while holding the Boot button. It will show up as a removable media device named `RPI-RP2`.
 
-3. Copy the `.uf2` file from `pirate-ducky/CircuitPython` (cloned files)
-   pico.uf2 - Raspberry Pi Pico
-   pico-w.uf2 - Raspberry Pi Pico W
-   Paste it to the root of the Pico (`RPI-RP2`). The device will reboot and after a second or so, it will reconnect as `CIRCUITPY`.
+3. Copy the `.uf2` file from `pirate-ducky/CircuitPython` (cloned files)  
+   pico.uf2 - Raspberry Pi Pico  
+   pico-w.uf2 - Raspberry Pi Pico W  
 
-4. Navigate to `pirate-ducky/lib` and copy all the files to the `lib` folder on your Raspberry Pi Pico.
+5. Paste it to the root of the Pico (`RPI-RP2`). The device will reboot and after a second or so, it will reconnect as `CIRCUITPY`.
 
-5. Navigate to `pirate-ducky/ducky` and copy all the files to the root of your Pico.
+5. Navigate to `pirate-ducky/lib` and copy all the files to the `lib` folder on your Raspberry Pi Pico.
 
-6. *For Pico W Only* Copy the `secrets.py` file from `pirate-ducky/secrets` (clone) to the root of your pico. This contains the AP name and password to be created by the Pico W.
+6. Navigate to `pirate-ducky/ducky` and copy all the files to the root of your Pico.
+
+7. *For Pico W Only* Copy the `secrets.py` file from `pirate-ducky/secrets` (clone) to the root of your pico. This contains the AP name and password to be created by the Pico W.
    `ssid : BadAPName`
    `password : badpassword`
 
-7. Find a script from `pirate-ducky/payloads` (some scripts needs modifications to run, so edit them before executing) or [create your own one using Ducky Script](https://docs.hak5.org/hak5-usb-rubber-ducky/ducky-script-basics/hello-world) and save it as `payload.dd` in the Pico. Currently, pirate-ducky only supports DuckyScript 1.0, not 3.0.
+8. Find a script from `pirate-ducky/payloads` (some scripts needs modifications to run, so edit them before executing) or [create your own one using Ducky Script](https://docs.hak5.org/hak5-usb-rubber-ducky/ducky-script-basics/hello-world) and save it as `payload.dd` in the Pico. Currently, pirate-ducky only supports DuckyScript 1.0, not 3.0.
 
-8. Be careful, if your device isn't in [setup mode](#setup-mode), the device will reboot and after half a second, the script will run.
+9. Be careful, if your device isn't in [setup mode](#setup-mode), the device will reboot and after half a second, the script will run.
 
-9. **Please note:** by default Pico W will not show as a USB drive
-
-10. And You Are All Set.
+10. **Please note:** by default Pico W will not show as a USB drive
 
 
 ## Setup mode
@@ -81,7 +69,7 @@ The easiest way to do so is by using a jumper wire between those pins as seen be
 ![Setup mode with a jumper](images/setup-mode.png)
 
 
-## USB enable/disable mode
+## USB mode enable-disable
 
 Pico: The default mode is USB mass storage enabled.   
 Pico W: The default mode is USB mass storage **disabled**  
@@ -107,25 +95,6 @@ To select a payload, ground one of these pins:
 - GP5 - payload2.dd
 - GP10 - payload3.dd
 - GP11 - payload4.dd
-
-
-### Pico W Web Service
-The Pico W AP defaults to ip address `192.168.4.1`.  You should be able to find the webservice at `http://192.168.4.1:80`  
-
-The following endpoints are available on the webservice:
-```
-/
-/new
-/ducky
-/edit/<filename>
-/write/<filename>
-/run/<filename>
-```
-
-API endpoints
-```
-/api/run/<filenumber>
-```
 
 
 ## Changing Keyboard Layouts
@@ -184,16 +153,17 @@ from keycode_win_de import Keycode
 ```
 
 
+## How to recover your Pico if it becomes corrupted or doesnt boot
+
+1. Plug the device using a converter/cable into a USB port while holding the Boot button. It will show up as a removable media device named `RPI-RP2`.
+
+2. Copy the `flash_nuke.uf2` file from `pirate-ducky/reset` (cloned files)  
+ 
+3. Paste it to the root of the Pico (`RPI-RP2`). The device will reboot and after a second or so, it will reconnect as `RPI-RP2`.
+
+
+
 ## Useful links and resources
-
-### How to recover your Pico if it becomes corrupted or doesn't boot.
-
-[Reset Instructions](RESET.md)
-
-### Installation Tool
-
-[raspberrydeveloper](https://github.com/raspberrydeveloper) Created a tool to convert a blank RPi Pico to a ducky.  
-You can find the tool [here](https://github.com/raspberrydeveloper/pyducky)
 
 ### Docs
 
@@ -202,17 +172,3 @@ You can find the tool [here](https://github.com/raspberrydeveloper/pyducky)
 [CircuitPython HID](https://learn.adafruit.com/circuitpython-essentials/circuitpython-hid-keyboard-and-mouse)
 
 [Ducky Script](https://github.com/hak5darren/USB-Rubber-Ducky/wiki/Duckyscript)
-
-### Video tutorials
-
-[pirate-ducky tutorial by **NetworkChuck**](https://www.youtube.com/watch?v=e_f9p-_JWZw)
-
-[USB Rubber Ducky playlist by **Hak5**](https://www.youtube.com/playlist?list=PLW5y1tjAOzI0YaJslcjcI4zKI366tMBYk)
-
-[CircuitPython tutorial on the Raspberry Pi Pico by **DroneBot Workshop**](https://www.youtube.com/watch?v=07vG-_CcDG0)
-
-
-## Related Projects
-
-[Defcon31-ducky](https://github.com/iot-pwn/defcon31-ducky)  
-There are still a few of these available to purchase, US only.
