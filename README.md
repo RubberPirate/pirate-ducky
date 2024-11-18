@@ -1,9 +1,5 @@
 <h1 align="center">pirate-ducky</h1>
 
-<div align="center">
-  <strong>Rubber Ducky Installation Simplified: Create a cheap but powerful &amp; custom USB Rubber Ducky with a Raspberry Pi Pico/Pico W</strong>
-</div>
-
 <br />
 
 <div align="center">
@@ -15,6 +11,12 @@
 </div>
 
 <br />
+
+![Cover-image](images/cover.png)
+
+<div align="center">
+  <strong>Rubber Ducky Installation Simplified: Create a cheap but powerful &amp; custom USB Rubber Ducky with a Raspberry Pi Pico/Pico W</strong>
+</div>
 
 ## Table of contents
 - [Requirements](#requirements)
@@ -165,10 +167,14 @@ from keycode_win_de import Keycode
 
 ## Useful links and resources
 
-### Docs
+### Docs -
 
 [CircuitPython](https://circuitpython.readthedocs.io/en/6.3.x/README.html)
 
 [CircuitPython HID](https://learn.adafruit.com/circuitpython-essentials/circuitpython-hid-keyboard-and-mouse)
 
 [Ducky Script](https://github.com/hak5darren/USB-Rubber-Ducky/wiki/Duckyscript)
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+### This Script is a simplified and faster version of [pico-ducky](https://github.com/dbisu/pico-ducky)
